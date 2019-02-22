@@ -116,7 +116,7 @@ class SortingRobot:
 
             self.move_right()  # move to next right item and loop over
 
-        print(f'time = {self._time}')
+        #print(f'time = {self._time}')
 
     def sort_helper(self):
 
