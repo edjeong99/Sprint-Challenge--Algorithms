@@ -101,39 +101,41 @@ class SortingRobot:
     def sort(self):
         """
         Sort the robot's list.
-        """
+        using for loop, start first item in the array then moving to right side.
+        each loop, we find the smallest value and put it in the most left position
+        when loop is over, list is sorted.
+
+                """
         for i in range(len(self._list)):
 
             self.swap_item()  # get item and hold.  current position will have None
-           # print(f'i = {i}  self.item = {self._item}')
-            # print(f'self._list = {self._list}')
-            self.sort_helper()  # get the smallest item on right side
 
-            self.assign_smallest()
+            self.sort_helper()  # get the smallest item among right side
 
-            self.move_right()
+            self.assign_smallest()  # put the smallest item into right place
+
+            self.move_right()  # move to next right item and loop over
+
+        print(f'time = {self._time}')
 
     def sort_helper(self):
 
-        if self.move_right():
-            if self.compare_item() == 1:
+        if self.move_right():  # run recursive until there is no more right item
+            if self.compare_item() == 1:  # if hold item is bigger, hold smaller item
                 self.swap_item()
-            self.sort_helper()
+            self.sort_helper()  # call recursive
         else:
             return
         return
 
     def assign_smallest(self):
-        # print(
-        #    f'ASSIGN self._list = {self._list} ')
 
-        while True:
-            if self.compare_item() is None:
+        while True:  # loop until right position is found
+            if self.compare_item() is None:  # right position is found
                 self.swap_item()
-                return
-            self.move_left()
-
-        # print(f'ASSIGN self._list = {self._list} ')
+                return  # break while loop
+            else:
+                self.move_left()  # keep moving left
 
 
 if __name__ == "__main__":
