@@ -106,7 +106,9 @@ class SortingRobot:
         when loop is over, list is sorted.
 
                 """
-        for i in range(len(self._list)):
+        while not self.light_is_on():
+
+            self.set_light_on()
 
             self.swap_item()  # get item and hold.  current position will have None
 
@@ -114,9 +116,10 @@ class SortingRobot:
 
             self.assign_smallest()  # put the smallest item into right place
 
-            self.move_right()  # move to next right item and loop over
+            if self.move_right():  # move to next right item and loop over
+                self.set_light_off()
 
-        #print(f'time = {self._time}')
+        print(f'time = {self._time}')
 
     def sort_helper(self):
 
